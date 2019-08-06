@@ -112,3 +112,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+let articlers = document.querySelector('.articles');
+
+data.forEach(item => {
+  articlers.appendChild(createArticle(item));
+})
+
+function createArticle(obj){
+
+  
+  // Define elements
+
+  const artDiv = document.createElement('div');
+  const artheader = document.createElement('h2');
+  const datePara = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expBtn = document.createElement('span')
+
+
+  // Create structure
+
+  artDiv.appendChild(artheader);
+  artDiv.appendChild(datePara);
+  artDiv.appendChild(para1);
+  artDiv.appendChild(para2);
+  artDiv.appendChild(para3);
+  artDiv.appendChild(expBtn);
+
+
+  // Set classes
+
+  artDiv.classList.add('article');
+  expBtn.classList.add('expandButton');
+  datePara.classList.add('date');
+
+
+  // Set text
+
+  artheader.textContent = obj.title;
+  datePara.textContent = obj.date;
+  para1.textContent = obj.firstParagraph;
+  para2.textContent = obj.secondParagraph;
+  para3.textContent = obj.thirdParagraph;
+  expBtn.textContent = 'expand';
+
+
+  // Event listener on 'expand'
+
+  expBtn.addEventListener('click', () => {
+    artDiv.classList.toggle('article-open');
+  })
+
+  return artDiv;
+}
